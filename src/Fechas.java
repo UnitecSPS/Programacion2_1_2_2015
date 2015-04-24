@@ -8,8 +8,8 @@
  *
  * @author Docente 17082011
  */
-public class Test {
+public class Fechas {
     public static void main(String[] args) {
-        System.out.println("Hola Mundo");
+        
     }
 }
