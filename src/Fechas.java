@@ -43,7 +43,7 @@ public class Fechas {
         System.out.println(c.getTime());
         
         c.add(Calendar.YEAR, 2);
-        c.add(Calendar.MONTH, -2);
+        c.add(Calendar.MONTH, -6);
         System.out.println(c.getTime());
         
         String name = c.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.forLanguageTag("es"));
