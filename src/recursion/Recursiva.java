@@ -29,9 +29,113 @@ public class Recursiva {
      * @param n el limite de la suma
      * @return la suma de los numeros 
      */
-    public int suma(int n){
+    public int sumaUp(int n){
         if(n>1)
-            return suma(n-1)+n;
+            return sumaUp(n-1)+n;
         return 1;
     }
+    
+    public int sumaDown(int n){
+        return sumaDown(n,0);
+    }
+    
+    private int sumaDown(int n, int suma){
+        if(n>=1)
+            return sumaDown(n-1, suma+n);
+        return suma;
+    }
+    
+    /**
+     * Calcular la potencia
+     * @param b Base
+     * @param e Exponente
+     * @return La potencia calculada
+     */
+    public int powUp(int b, int e){
+        if(e>0)
+            return powUp(b, e-1)*b;
+        return 1;
+    }
+    //valor inicial del acum es 1
+    public int powDown(int b, int e, int acum){
+        if(e>0){
+            return powDown(b, e-1, acum*b);
+        }
+        return acum;
+    }
+    
+    public int factorial(int n){
+        if(n>1)
+            return factorial(n-1)*n;
+        return 1;
+    }
+    
+    public int mcdUp(int n1, int n2, int d){
+        if(n1 >= d && n2 >= d){
+            if(n1 % d == 0 && n2 % d == 0){
+                return mcdUp(n1/d, n2/d, d)*d;
+            }
+            return mcdUp(n1, n2, d+1);
+        }
+        return 1;
+    }
+    
+    public int mcdDown(int n1,int n2){
+        return mcdDown(n1,n2,2,1);
+    }
+    
+    private int mcdDown(int n1, int n2, int d, int res){
+        if(n1 >= d && n2 >= d){
+            if(n1 % d == 0 && n2 % d == 0){
+                return mcdDown(n1/d, n2/d, d, res * d);
+            }
+            return mcdDown(n1, n2, d+1, res);
+        }
+        return res;
+    }
+    
+    /**
+     * Funcion recursiva que retorna true si la cad de parametro es
+     * palindromo o no.
+     * @param cad Cadena a evaluar
+     * @return true si lo es o false si no.
+     */
+    public boolean palindromo(String cad){
+        return palindromo(cad, 0, cad.length()-1);
+    }
+
+    private boolean palindromo(String cad, int inicio, int fin) {
+        if(inicio<fin){
+            if(cad.charAt(inicio)== cad.charAt(fin))
+                return palindromo(cad, inicio+1, fin-1);
+            return false;
+        }
+        return true;
+    }
+    
+    /**
+     * Imprime una piramide
+     * @param filas Cantidad de Filas necesarias
+     */
+    public void piramide(int filas){
+        piramide(filas, 1, 1);
+    }
+
+    private void piramide(int filas,int fila, int col) {
+        if(fila <= filas)
+        {
+            if(col <= fila)
+            {
+                System.out.print("*");
+                piramide(filas, fila, col + 1);
+            }
+            else
+            {
+                System.out.println("");
+                piramide(filas, fila + 1, 1);
+            }
+        }
+    }
+    
+    
 }
