@@ -152,7 +152,7 @@ public class Recursiva {
     }
 
     private boolean primo(int n, int d) {
-        if(n==1)
+        if(n<=1)
             return false;
         else if(d < n){
             if( n % d == 0 )
@@ -160,5 +160,28 @@ public class Recursiva {
             return primo(n, d+1);
         }
         return true;
+    }
+    
+    public boolean cuadradoPerfecto(int n){
+        return cuadradoPerfecto(n,0);
+    }
+
+    private boolean cuadradoPerfecto(int n, int cont) {
+        if(cont*cont < n)
+            return cuadradoPerfecto(n, cont+1);
+        else if(cont*cont == n)
+            return true;
+        return false;
+    }
+    
+    /**
+     * Calcula la serie de fibonacci de un numero
+     * @param pos Numero a evaluar
+     * @return Serie de Fibonacci
+     */
+    public int fibo(int pos){
+        if(pos == 0|| pos ==1)
+            return pos;
+        return fibo(pos-2)+fibo(pos-1);
     }
 }
