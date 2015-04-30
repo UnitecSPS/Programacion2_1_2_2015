@@ -94,6 +94,11 @@ public class Recursiva {
         return res;
     }
     
+    public int mcdEuclides(int n1, int n2){
+        if(n2 == 0)
+            return n1;
+        return mcdEuclides(n2, n1 % n2);
+    }
     /**
      * Funcion recursiva que retorna true si la cad de parametro es
      * palindromo o no.
@@ -137,5 +142,23 @@ public class Recursiva {
         }
     }
     
-    
+    /**
+     * Ver si un numero es primo o no
+     * @param n Numero a evaluar
+     * @return true si es primo o false si no
+     */
+    public boolean primo(int n){
+        return primo(n,2);
+    }
+
+    private boolean primo(int n, int d) {
+        if(n==1)
+            return false;
+        else if(d < n){
+            if( n % d == 0 )
+                return false;
+            return primo(n, d+1);
+        }
+        return true;
+    }
 }
