@@ -1,17 +1,16 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import java.util.ArrayList;
 /**
  *
  * @author Carlos
  */
-public class ArrayList {
+public class ArrayLists {
     public static void main(String[] args) {
-        java.util.ArrayList<String> arreglo = new java.util.ArrayList<>();
+        ArrayList<String> arreglo = new ArrayList<>();
         
         //guardo datos en el arreglo
         arreglo.add("Hola");
@@ -40,5 +39,4 @@ public class ArrayList {
         for(String cad: arreglo)
             System.out.println("-" +cad);
     }
-
 }
