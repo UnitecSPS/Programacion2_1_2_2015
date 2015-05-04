@@ -32,6 +32,6 @@ public class TestRecursion {
         System.out.println("MCD(36,24): " + re.mcdDown(36, 24));
         
         re.piramide(6);
-        System.out.println("Fiboracci" + re.Fibo(8));
+        System.out.println("Fiboracci" + re.fibo(8));
     }
 }
