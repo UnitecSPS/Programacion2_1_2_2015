@@ -15,8 +15,9 @@ import java.util.ArrayList;
 public class CuentaCheques extends CuentaBancaria {
     private ArrayList<Cheque> cheques;
     
-    public  CuentaCheques(){
-        numero = 1;
+    public  CuentaCheques(int n, String c, double s){
+        super(n,c,s,0);
+        cheques = new ArrayList<>();
     }
     
     public void addCheque(Cheque ch){

@@ -17,6 +17,14 @@ public class CuentaBancaria {
     protected String cliente;
     protected double saldo, tasa;
     protected Date fecha;
+    
+    public CuentaBancaria(int n, String c, double s, double t){
+        numero = n;
+        cliente = c;
+        saldo = s;
+        tasa = t;
+        fecha = new Date();
+    }
 
     public int getNumero() {
         return numero;
@@ -56,7 +64,7 @@ public class CuentaBancaria {
 
     @Override
     public String toString() {
-        return "CuentaBancaria{" + "numero=" + numero + ", cliente=" + cliente + ", saldo=" + saldo + '}';
+        return "Cuenta{" + "numero=" + numero + ", cliente=" + cliente + ", saldo=" + saldo + '}';
     }
     
     

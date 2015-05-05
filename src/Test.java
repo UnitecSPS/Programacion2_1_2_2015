@@ -14,7 +14,7 @@ import exclusivo8am.herencia.CuentaCheques;
  */
 public class Test {
     public static void main(String[] args) {
-        CuentaCheques ch = new CuentaCheques();
+        CuentaCheques ch = new CuentaCheques(1,"Kamil",5000);
         //ch.numero = 1;
         PrestamoAuto pam = new PrestamoAuto();
         //pam.tasa = 0.4;
