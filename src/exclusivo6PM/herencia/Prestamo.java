@@ -17,6 +17,15 @@ public class Prestamo {
     protected double monto, balance, tasa;
     protected Date fecha;
 
+    public Prestamo(int numero, String deudor, double monto, double tasa) {
+        this.numero = numero;
+        this.deudor = deudor;
+        this.monto = monto;
+        this.tasa = tasa;
+        balance = monto;
+        fecha = new Date();
+    }
+    
     public int getNumero() {
         return numero;
     }
@@ -44,4 +53,11 @@ public class Prestamo {
     public void abono(double m){
         balance -= m;
     }
+
+    @Override
+    public String toString() {
+        return "Prestamo{" + "numero=" + numero + ", deudor=" + deudor + ", monto=" + monto + ", balance=" + balance + ", tasa=" + tasa + '}';
+    }
+    
+    
 }

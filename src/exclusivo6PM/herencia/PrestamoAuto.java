@@ -12,10 +12,16 @@ package exclusivo6PM.herencia;
 public class PrestamoAuto extends Prestamo{
     private double montoSeguro;
     
-    public PrestamoAuto(){
-        this.tasa = 5;
-        deudor= "Bryan";
+    public PrestamoAuto(int n, String d, double m){
+        super(n, d, m, 0.08);
+        montoSeguro = monto * 0.5;
+        balance += montoSeguro;
     }
+    
+    public PrestamoAuto(){
+        this(-1,"pepito",0);
+    }
+    
 
     public double getMontoSeguro() {
         return montoSeguro;

@@ -5,14 +5,31 @@
  */
 package exclusivo6PM.herencia;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Docente 17082011
  */
 public class Ficohsa {
     public static void main(String[] args) {
-        PrestamoAuto pam = new PrestamoAuto();
-        pam.tasa = 0.4;
-        System.out.println(pam);
+        //UPCASTING
+        ArrayList<Prestamo> prestamos = new ArrayList<>();
+        prestamos.add( new PrestamoAuto(1,"Bryan",35000) );
+        prestamos.add( new PrestamoVivienda(2,"Carlos",350000) );
+        prestamos.add( new Prestamo(3,"Alejandro",5000,0.01) );
+        
+
+        for(Prestamo prem : prestamos){
+            //obj instanceof Clase 
+            if( prem instanceof PrestamoVivienda )
+                System.out.print("VVIENDA ");
+            else if( prem instanceof PrestamoAuto )
+                System.out.println("AUTO ");
+            else
+                System.out.println("PAPA ");
+            
+            System.out.println(prem);
+        }
     }
 }
