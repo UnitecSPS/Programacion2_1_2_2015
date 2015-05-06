@@ -24,5 +24,8 @@ public class CuentaCheques extends CuentaBancaria {
         cheques.add(ch);
     }
     
-    
+    @Override
+    public void quienSoy(){
+        System.out.println("SOY DE CHEQUES");
+    }
 }

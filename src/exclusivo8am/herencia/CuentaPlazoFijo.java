@@ -41,4 +41,14 @@ public class CuentaPlazoFijo extends CuentaBancaria{
         int y = Integer.parseInt(datos[2]);
         plazoFin.set(y, m, d);
     }
+    
+    @Override
+    public void quienSoy(){
+        System.out.println("SOY DE PLAZO FIJO");
+    }
+    
+    @Override
+    public String toString(){
+        return super.toString() + ", fecha fin: " + plazoFin.getTime();
+    }
 }

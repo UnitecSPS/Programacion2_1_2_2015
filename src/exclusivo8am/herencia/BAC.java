@@ -21,14 +21,25 @@ public class BAC {
         cuentas.add( new CuentaCheques(1,"Kamil",5000) );
         cuentas.add( new CuentaPlazoFijo(2, "Edgar", 500000) );
         
+        System.out.println(((CuentaPlazoFijo)cuentas.get(2)).getPlazoFin().getTime());
+        
         for(CuentaBancaria cb : cuentas){
+            cb.quienSoy();
+        }
+        
+        System.out.println("\n----------------------------\n");
+        
+        for(CuentaBancaria cb : cuentas){
+            cb.depositar(500);
             // obj instanceof Clase
             if( cb instanceof CuentaCheques )
                 System.out.print("La siguiente cuenta es de cheques: ");
-            else if( cb instanceof CuentaPlazoFijo )
+            else if( cb instanceof CuentaPlazoFijo ){
+                ((CuentaPlazoFijo)cb).setPlazoFin("11/12/2018");
                 System.out.print("La siguiente cuenta es de plazo fijo: ");
-            else
+            }else
                 System.out.println("La siguiente cuenta es de cuenta: ");
+            
             
             System.out.println(cb);
         }
