@@ -19,13 +19,17 @@ public class Ficohsa {
         prestamos.add( new PrestamoVivienda(2,"Carlos",350000) );
         prestamos.add( new Prestamo(3,"Alejandro",5000,0.01) );
         
-
+       // ((PrestamoAuto)prestamos.get(0)).setDescripcionAuto("Toyota Corolla");
+        
         for(Prestamo prem : prestamos){
+            prem.quienSoy();
             //obj instanceof Clase 
             if( prem instanceof PrestamoVivienda )
                 System.out.print("VVIENDA ");
-            else if( prem instanceof PrestamoAuto )
+            else if( prem instanceof PrestamoAuto ){
+                ((PrestamoAuto)prem).setDescripcionAuto("Toyota Corolla");
                 System.out.println("AUTO ");
+            }
             else
                 System.out.println("PAPA ");
             

@@ -11,11 +11,20 @@ package exclusivo6PM.herencia;
  */
 public class PrestamoAuto extends Prestamo{
     private double montoSeguro;
+    private String descripcionAuto;
     
     public PrestamoAuto(int n, String d, double m){
         super(n, d, m, 0.08);
         montoSeguro = monto * 0.5;
         balance += montoSeguro;
+    }
+
+    public String getDescripcionAuto() {
+        return descripcionAuto;
+    }
+
+    public void setDescripcionAuto(String descripcionAuto) {
+        this.descripcionAuto = descripcionAuto;
     }
     
     public PrestamoAuto(){
@@ -25,5 +34,16 @@ public class PrestamoAuto extends Prestamo{
 
     public double getMontoSeguro() {
         return montoSeguro;
+    }
+    
+    @Override
+    public void quienSoy(){
+        System.out.println("SOY DE TIPO AUTO");
+    }
+    
+    @Override
+    public String toString() {
+        return super.toString()+", montoSeguro="+montoSeguro + 
+                " , auto="+descripcionAuto;
     }
 }

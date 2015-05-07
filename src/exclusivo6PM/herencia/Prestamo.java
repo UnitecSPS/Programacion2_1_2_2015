@@ -56,8 +56,12 @@ public class Prestamo {
 
     @Override
     public String toString() {
-        return "Prestamo{" + "numero=" + numero + ", deudor=" + deudor + ", monto=" + monto + ", balance=" + balance + ", tasa=" + tasa + '}';
+        return "numero=" + numero + ", deudor=" + 
+                deudor + ", monto=" + monto + ", balance=" + 
+                balance + ", tasa=" + tasa;
     }
     
-    
+    public void quienSoy(){
+        System.out.println("SOY EL PADRE");
+    }
 }
