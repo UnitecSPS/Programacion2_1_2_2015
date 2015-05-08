@@ -47,7 +47,8 @@ public class BarcoPasajero extends Barco {
     }
     
     public void listarPasajeros(){
-        System.out.println("Listado de Pasajeros\n-------------------");
+        System.out.println("Listado de Pasajeros del Barco "+name+
+                "\n-------------------");
         for(int p=0;p<contador;p++){
             System.out.println("-"+pasajeros[p]);
         }
