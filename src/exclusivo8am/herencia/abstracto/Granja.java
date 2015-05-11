@@ -14,5 +14,29 @@ public class Granja {
     public static void main(String[] args) {
         Animal ani = new Perro();
         ani.hablar();
+        //funciones ON-DEMAND
+        Animal am = new Animal(7){
+            
+            void test(){
+                System.out.println("Waka Waka");
+            } 
+            
+            @Override
+            public void hablar(){
+                test();
+            }
+        };
+        
+        am.hablar();
+        
+        Animal mal = new Animal(5) {
+
+            @Override
+            public void hablar() {
+                System.out.println("Wiki Wiki");
+            }
+        };
+        
+        mal.hablar();
     }
 }

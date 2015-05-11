@@ -18,6 +18,7 @@ public class Perro extends Animal {
 
     @Override
     public void hablar() {
+        //super.hablar();
         System.out.println("Guaus Guau Guau");
     }
     
