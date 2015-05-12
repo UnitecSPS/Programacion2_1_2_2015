@@ -20,33 +20,35 @@ public abstract class CatrachoCalendar extends Calendar {
     }
 
     @Override
-    public void add(int field, int amount) {
+    public void add(int i, int i1) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void roll(int field, boolean up) {
+    public void roll(int i, boolean bln) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int getMinimum(int field) {
+    public int getMinimum(int i) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int getMaximum(int field) {
+    public int getMaximum(int i) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int getGreatestMinimum(int field) {
+    public int getGreatestMinimum(int i) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int getLeastMaximum(int field) {
+    public int getLeastMaximum(int i) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
     
 }
