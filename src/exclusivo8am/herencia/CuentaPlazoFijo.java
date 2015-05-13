@@ -12,7 +12,7 @@ import java.util.Calendar;
  *
  * @author Docente 17082011
  */
-public class CuentaPlazoFijo extends CuentaBancaria{
+public class CuentaPlazoFijo extends CuentaBancaria implements Rateable{
     private Calendar plazoFin;
     private double intereses;
     
@@ -28,6 +28,15 @@ public class CuentaPlazoFijo extends CuentaBancaria{
 
     public double getIntereses() {
         return intereses;
+    }
+
+    @Override
+    public boolean retirar(double m) {
+        if(intereses > m){
+            intereses -= m;
+            return true;
+        }
+        return false;
     }
     
     /**
@@ -50,5 +59,13 @@ public class CuentaPlazoFijo extends CuentaBancaria{
     @Override
     public String toString(){
         return super.toString() + ", fecha fin: " + plazoFin.getTime();
+    }
+
+    @Override
+    public void increaseRate() {
+        Calendar hoy = Calendar.getInstance();
+        
+        if(hoy.before(plazoFin))
+            intereses += saldo * tasa;
     }
 }

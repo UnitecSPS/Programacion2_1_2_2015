@@ -10,7 +10,7 @@ package interfaces;
  *
  * @author Docente 17082011
  */
-public class Refrigeradora implements Interneteable, Zombiable {
+public class Refrigeradora implements InterZombiable {
 
     @Override
     public String getIp() {
@@ -36,6 +36,11 @@ public class Refrigeradora implements Interneteable, Zombiable {
     @Override
     public void queComo() {
         System.out.println("Me como la carne que este en el freezer");
+    }
+
+    @Override
+    public void mixin() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

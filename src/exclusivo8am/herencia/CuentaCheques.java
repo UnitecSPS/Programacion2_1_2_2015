@@ -20,7 +20,11 @@ public class CuentaCheques extends CuentaBancaria {
         cheques = new ArrayList<>();
     }
     
-    public void addCheque(Cheque ch){
+    public void addCheque(double m, boolean sp){
+        int n = cheques.size()+1;
+        Cheque ch = new Cheque(n, "Panchito", m);
+        if(!sp) 
+            ch.reboto();
         cheques.add(ch);
     }
     
@@ -28,4 +32,13 @@ public class CuentaCheques extends CuentaBancaria {
     public void quienSoy(){
         System.out.println("SOY DE CHEQUES");
     }
+
+    @Override
+    public boolean retirar(double m) {
+        boolean paso = super.retirar(m);
+        addCheque(m, paso);
+        return paso;
+    }
+    
+    
 }
