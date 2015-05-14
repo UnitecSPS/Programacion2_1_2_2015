@@ -17,6 +17,7 @@ public class CuentaBancaria {
     protected String cliente;
     protected double saldo, tasa;
     protected Date fecha;
+    public static final int version=2;
     
     public CuentaBancaria(int n, String c, double s, double t){
         numero = n;
@@ -26,7 +27,7 @@ public class CuentaBancaria {
         fecha = new Date();
     }
 
-    public int getNumero() {
+    public final int getNumero() {
         return numero;
     }
 
@@ -51,6 +52,7 @@ public class CuentaBancaria {
     }
     
     public void depositar(double m){
+        final int t=2;
         saldo += m;
     }
     
