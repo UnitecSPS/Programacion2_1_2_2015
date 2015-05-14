@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @author Docente 17082011
  */
 public class ComputerDevice extends ElectronicDevice 
-        implements INetwork, ISecureNetwork, Serializable{
+        implements IFullNetwork, Serializable{
 
     public ComputerDevice(String name) {
         super(name, "Computer");
@@ -49,6 +49,11 @@ public class ComputerDevice extends ElectronicDevice
 
     @Override
     public void applyEncryption() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void full() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
