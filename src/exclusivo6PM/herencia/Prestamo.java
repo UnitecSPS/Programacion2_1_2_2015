@@ -16,6 +16,7 @@ public class Prestamo {
     protected String deudor;
     protected double monto, balance, tasa;
     protected Date fecha;
+    static final int version = 1;
 
     public Prestamo(int numero, String deudor, double monto, double tasa) {
         this.numero = numero;
@@ -51,6 +52,7 @@ public class Prestamo {
     }
     
     public void abono(double m){
+       // version=1;
         balance -= m;
     }
 

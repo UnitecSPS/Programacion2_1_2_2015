@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfaces;
+package exclusivo6PM.prueba2;
 
 /**
  *
  * @author Docente 17082011
  */
-public interface INetwork {
-    int version = 3;
-    void addDevice(String name);
-    void printNetwork();
-    boolean connectDeviceWith(String d1name, String d2name);
-    boolean existDevice(String name);
+public interface CollectionActions {
+    void print();
 }
