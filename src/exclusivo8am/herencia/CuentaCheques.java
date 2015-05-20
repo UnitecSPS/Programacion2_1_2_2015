@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Docente 17082011
  */
-public class CuentaCheques extends CuentaBancaria {
+public final class CuentaCheques extends CuentaBancaria {
     private ArrayList<Cheque> cheques;
     
     public  CuentaCheques(int n, String c, double s){

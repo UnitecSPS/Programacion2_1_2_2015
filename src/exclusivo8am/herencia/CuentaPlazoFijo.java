@@ -12,7 +12,7 @@ import java.util.Calendar;
  *
  * @author Docente 17082011
  */
-public class CuentaPlazoFijo extends CuentaBancaria implements Rateable{
+public final class CuentaPlazoFijo extends CuentaBancaria implements Rateable{
     private Calendar plazoFin;
     private double intereses;
     
