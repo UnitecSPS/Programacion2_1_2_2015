@@ -37,7 +37,10 @@ public class PlanBlackberry extends Plan {
     }
     
     public boolean addPinAmigo(String pin){
-        if(!bbm.contains(pin))
+        if(!bbm.contains(pin)){
             bbm.add(pin);
+            return true;
+        }
+        return false;
     }
 }
