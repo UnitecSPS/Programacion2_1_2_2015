@@ -9,7 +9,7 @@ package exclusivo6PM.herencia;
  *
  * @author Docente 17082011
  */
-public class PrestamoAuto extends Prestamo{
+public final class PrestamoAuto extends Prestamo{
     private double montoSeguro;
     private String descripcionAuto;
     

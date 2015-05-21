@@ -9,7 +9,7 @@ package exclusivo6PM.herencia;
  *
  * @author Docente 17082011
  */
-public class PrestamoVivienda extends Prestamo {
+public final class PrestamoVivienda extends Prestamo {
     private double gastoCierre;
 
     public PrestamoVivienda(int numero, String deudor, double monto) {
@@ -22,7 +22,7 @@ public class PrestamoVivienda extends Prestamo {
     }
     
     @Override
-    public void quienSoy(){
+    public final void quienSoy(){
         System.out.println("SOY DE TIPO VIVIENDA");
     }
     

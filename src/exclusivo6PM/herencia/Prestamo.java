@@ -16,7 +16,7 @@ public class Prestamo {
     protected String deudor;
     protected double monto, balance, tasa;
     protected Date fecha;
-    static final int version = 1;
+    public static final int version = 1;
 
     public Prestamo(int numero, String deudor, double monto, double tasa) {
         this.numero = numero;
@@ -27,11 +27,11 @@ public class Prestamo {
         fecha = new Date();
     }
     
-    public int getNumero() {
+    public final int getNumero() {
         return numero;
     }
 
-    public String getDeudor() {
+    public final String getDeudor() {
         return deudor;
     }
 
@@ -64,6 +64,7 @@ public class Prestamo {
     }
     
     public void quienSoy(){
+        final int x=9;
         System.out.println("SOY EL PADRE");
     }
 }
