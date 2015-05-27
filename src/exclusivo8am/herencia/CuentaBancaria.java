@@ -53,6 +53,10 @@ public class CuentaBancaria {
     
     public void depositar(double m){
         final int t=2;
+        if(m < 0){
+            //throw objeto instanciado de una clase throwable
+            throw new InvalidAmountException(m);
+        }
         saldo += m;
     }
     
