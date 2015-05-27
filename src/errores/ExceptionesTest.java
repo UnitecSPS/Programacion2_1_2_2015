@@ -5,6 +5,7 @@
  */
 package errores;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -24,8 +25,18 @@ public class ExceptionesTest {
             B();
             System.out.println("Boooo");
         }
+        catch(InputMismatchException e){
+            System.out.println("Error, Ingrese un dato entero");
+        }
+        catch(ArrayIndexOutOfBoundsException e){
+            System.out.println("Coordenada " + 
+                    e.getMessage() + " erronea");
+        }
         catch(Exception x){
-            System.out.println("Error");
+            System.out.println("Error: " + x);
+            //x.printStackTrace();
+            int n = x.getStackTrace().length;
+            System.out.println(x.getStackTrace()[n-1]);
         }
             
         System.out.println("Finalizando A");
