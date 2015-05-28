@@ -13,7 +13,12 @@ public class DowncastingPrestamo {
     public static void main(String[] args) {
         //UPCASTING
         Prestamo prem = new PrestamoAuto(1,"Bryan",35000);
-        
+        try{
+            prem.abono(5000);
+        }
+        catch(PaymentInvalidException e){
+            System.out.println("Error de pago: "+e.getMessage());
+        }
         //DOWCASTING 
         
         //INDIRECTO

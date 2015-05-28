@@ -52,7 +52,8 @@ public class Prestamo {
     }
     
     public void abono(double m){
-       // version=1;
+        if( m < 0 )
+            throw new PaymentInvalidException(m);
         balance -= m;
     }
 

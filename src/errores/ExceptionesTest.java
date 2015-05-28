@@ -26,17 +26,19 @@ public class ExceptionesTest {
             System.out.println("Boooo");
         }
         catch(InputMismatchException e){
-            System.out.println("Error, Ingrese un dato entero");
+            System.err.println("Error, Ingrese un dato entero");
+            //throw e;
         }
         catch(ArrayIndexOutOfBoundsException e){
             System.out.println("Coordenada " + 
                     e.getMessage() + " erronea");
         }
-        catch(Exception x){
-            System.out.println("Error: " + x);
-            //x.printStackTrace();
-            int n = x.getStackTrace().length;
-            System.out.println(x.getStackTrace()[n-1]);
+        catch(Exception e){
+            System.out.println("Error: " + e);
+            e.printStackTrace();
+        }
+        finally{
+            System.out.println("Se ejecuta el finally");
         }
             
         System.out.println("Finalizando A");
