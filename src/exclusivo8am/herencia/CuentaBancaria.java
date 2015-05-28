@@ -51,7 +51,7 @@ public class CuentaBancaria {
         this.tasa = tasa;
     }
     
-    public void depositar(double m){
+    public void depositar(double m)throws InvalidAmountException{
         final int t=2;
         if(m < 0){
             //throw objeto instanciado de una clase throwable

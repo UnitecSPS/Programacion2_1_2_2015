@@ -4,14 +4,14 @@
  * and open the template in the editor.
  */
 
-package exclusivo8am.herencia;
+package exclusivo8am.prueba3;
 
 /**
  *
  * @author Docente 17082011
  */
-public class InvalidAmountException extends Exception{
-    public InvalidAmountException(double m){
-        super("Amount Lps."+ m+" is invalid.");
+public class ValorMaloException extends RuntimeException {
+    public ValorMaloException(){
+        super("Valor No es Correcto");
     }
 }
