@@ -6,6 +6,7 @@
 package exclusivo6PM.herencia;
 
 import java.util.Date;
+import java.util.InputMismatchException;
 
 /**
  *
@@ -51,7 +52,7 @@ public class Prestamo {
         return fecha;
     }
     
-    public void abono(double m){
+    public void abono(double m)throws PaymentInvalidException{
         if( m < 0 )
             throw new PaymentInvalidException(m);
         balance -= m;

@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package exclusivo6PM.herencia;
+package exclusivo6PM.prueba3;
 
 /**
  *
  * @author Aula
  */
-public class PaymentInvalidException extends Exception {
-    public PaymentInvalidException(double m){
-        super("Lps "+m+" is an invalid payment.");
+public class ValorMaloException extends RuntimeException {
+    public ValorMaloException(){
+        super("Valor Incorrecto");
     }
 }
