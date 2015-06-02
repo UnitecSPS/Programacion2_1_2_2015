@@ -7,6 +7,8 @@
 package exclusivo8am.herencia;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -30,7 +32,11 @@ public class BAC {
         System.out.println("\n----------------------------\n");
         
         for(CuentaBancaria cb : cuentas){
-            cb.depositar(500);
+            try {
+                cb.depositar(500);
+            } catch (InvalidAmountException ex) {
+                
+            }
             // obj instanceof Clase
             if( cb instanceof CuentaCheques )
                 System.out.print("La siguiente cuenta es de cheques: ");
