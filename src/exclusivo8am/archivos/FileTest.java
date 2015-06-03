@@ -96,4 +96,39 @@ public class FileTest {
             System.out.println("Free Space: " + archivo.getFreeSpace());
         }
     }
+
+    void tree() {
+        tree(archivo,"");
+    }
+
+    private void tree(File dir, String tab) {
+        if(!dir.isHidden()){
+            System.out.println(tab+dir.getName());
+            if(dir.isDirectory()){
+                for(File child : dir.listFiles())
+                    tree(child,tab+"\t");
+            }
+        }
+    }
+
+    void viruloso()throws IOException {
+        /*
+        1- Utilizar el folder que se esta manejando por la opcion 1
+           pero validen de que exista y que sea directorio
+        2- Dentro de viruloso van a crear 100 folders
+        ej: folder1, folder2 o viru1, virus2 u otro
+        3- Dentro de cada folder, crear 100 archivos
+        ej: archi1.txt o virus1.txt u otro
+        */
+        if(archivo.isDirectory()){
+            for(int f=1;f<=100;f++){
+                File virus = new File(archivo, "folder"+f);
+                virus.mkdir();
+                for(int a=1;a<=100;a++){
+                    File archi = new File(virus, "archi"+a+".txt");
+                    archi.createNewFile();
+                }
+            }
+        }
+    }
 }

@@ -26,6 +26,8 @@ public class MainTest {
             System.out.println("4- Crear Folder");
             System.out.println("5- Borrar Archivo o Folder");
             System.out.println("6- Listar Directorio");
+            System.out.println("7- Comando Tree");
+            System.out.println("8- Viruloso");
             System.out.println("Escoja opcion: ");
             op = lea.nextInt();
             
@@ -49,6 +51,12 @@ public class MainTest {
                         break;
                     case 6:
                         ft.dir();
+                        break;
+                    case 7:
+                        ft.tree();
+                        break;
+                    case 8:
+                        ft.viruloso();
                         break;
                 }
             }
