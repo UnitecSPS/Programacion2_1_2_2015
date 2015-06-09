@@ -59,18 +59,17 @@ public class TestingTexto {
         System.out.println("Lo queres append?: ");
         String append = lea.next().toUpperCase();
         
-        FileWriter fw= new FileWriter(archi, append.equals("SI"));
-        System.out.println("Ingrese texto a escribir:");
-        
-        do{
-            String body = lea.nextLine();
-            if(body.equals("#$%"))
-                break;
-            fw.write(body+"\n");
-            fw.flush();
-        }while(true);
+        try(FileWriter fw= new FileWriter(archi, append.equals("SI"))){
+            System.out.println("Ingrese texto a escribir:");
 
-        fw.close();
+            do{
+                String body = lea.nextLine();
+                if(body.equals("#$%"))
+                    break;
+                fw.write(body+"\n");
+                //fw.flush();
+            }while(true);
+        }
     }
 
     private static void leer(File archi) throws IOException {
@@ -80,6 +79,14 @@ public class TestingTexto {
         System.out.println("Contenido leido "+leido+" caracteres");
         System.out.println("-------------------------------------");
         System.out.println(buffer);
+        
+        System.out.println("\nUSANDO AHORA SCANNER\n------------");
+        fr = new FileReader(archi);
+        Scanner lector = new Scanner(fr);
+        while(lector.hasNext()){
+            System.out.println(lector.nextLine());
+        }
+        
         fr.close();
     }
 }
