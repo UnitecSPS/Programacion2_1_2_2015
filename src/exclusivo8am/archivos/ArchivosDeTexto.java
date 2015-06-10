@@ -58,6 +58,14 @@ public class ArchivosDeTexto {
                                 " caracteres: ");
                         System.out.println("----------------------------------");
                         System.out.println(buffer);
+                        
+                        //leerlo con scanner
+                        System.out.println("\nLEER CON SCANNER\n---------------");
+                        fr = new FileReader(f);
+                        Scanner lector = new Scanner(fr);
+                        while(lector.hasNext()){
+                            System.out.println(lector.nextLine());
+                        }
                 }
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
