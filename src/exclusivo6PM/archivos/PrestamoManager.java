@@ -67,13 +67,14 @@ public class PrestamoManager {
 
         return codigo;
     }
-    
-    public void agregarPrestamo(String cli, char ti, double m)throws IOException{
-        if(ti != 'A' && ti != 'V' && ti != 'P')
-            throw new NoSuchElementException(ti+" No es un tipo correcto de prestamo");
-        
+
+    public void agregarPrestamo(String cli, char ti, double m) throws IOException {
+        if (ti != 'A' && ti != 'V' && ti != 'P') {
+            throw new NoSuchElementException(ti + " No es un tipo correcto de prestamo");
+        }
+
         rPrestamos.seek(rPrestamos.length());
-        
+
         //codigo
         rPrestamos.writeInt(getCodigo());
         //tipo
@@ -89,14 +90,14 @@ public class PrestamoManager {
         //monto
         rPrestamos.writeDouble(m);
         //extra
-        double extra = getExtra(ti,m);
+        double extra = getExtra(ti, m);
         rPrestamos.writeDouble(extra);
         //balance
-        rPrestamos.writeDouble(m+extra); 
+        rPrestamos.writeDouble(m + extra);
     }
 
     private double getExtra(char ti, double m) {
-        switch(ti){
+        switch (ti) {
             case 'A':
                 return m * 0.4;
             case 'V':
@@ -104,11 +105,74 @@ public class PrestamoManager {
         }
         return 0;
     }
-    
-    public void listar()throws IOException{
+
+    public void listar() throws IOException {
         rPrestamos.seek(0);
-        while(rPrestamos.getFilePointer() < rPrestamos.length()){
-            
+        while (rPrestamos.getFilePointer() < rPrestamos.length()) {
+            int nc = rPrestamos.readInt();
+            char tipo = rPrestamos.readChar();
+            String cli = rPrestamos.readUTF();
+            rPrestamos.skipBytes(16);
+            double m = rPrestamos.readDouble();
+            rPrestamos.readDouble();
+            double bal = rPrestamos.readDouble();
+
+            System.out.println(nc + "-" + cli + " tipo: " + tipo
+                    + " Monto Original Lps." + m
+                    + " Balance Lps" + bal);
         }
     }
+
+    public long search(int np) throws IOException {
+        rPrestamos.seek(0);
+        while (rPrestamos.getFilePointer() < rPrestamos.length()) {
+            if (rPrestamos.readInt() == np) {
+                return rPrestamos.getFilePointer();
+            }
+            rPrestamos.readChar();
+            rPrestamos.readUTF();
+            rPrestamos.skipBytes(40);
+        }
+        return -1;
+    }
+
+    public void abonar(int np, double a, String firmo) throws IOException {
+        long pos = search(np);
+        Date now = new Date();
+
+        if (pos != -1) {
+            rPrestamos.readChar();
+            rPrestamos.readUTF();
+            rPrestamos.readLong();
+            long maxima = rPrestamos.readLong();
+            rPrestamos.skipBytes(8);
+            long poi = rPrestamos.getFilePointer();
+            double balance = rPrestamos.readDouble();
+            
+            double mora = 0;
+            if (now.getTime() > maxima) {
+                mora = a * 0.2;
+                a = a * 0.8;   
+            }
+            
+            if (a > balance) {
+                a = balance;
+            }
+            rPrestamos.seek(poi);
+            rPrestamos.writeDouble(balance - a);
+            createAbonoRegistro(np,a,mora,firmo,now);
+        }
+    }
+
+    private void createAbonoRegistro(int np, double a, double mora, String firmo, Date now) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public void estadoCuenta(int np){
+        /*
+        1-Imprimir TODOS los datos del prestamo
+        2- Imprimir el Listado de abonos hechos a este prestamo
+        */
+    }
+
 }

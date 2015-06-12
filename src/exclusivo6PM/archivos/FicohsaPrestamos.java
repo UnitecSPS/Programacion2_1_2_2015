@@ -23,6 +23,8 @@ public class FicohsaPrestamos {
         do{
             System.out.println("1-Agregar Prestamo");
             System.out.println("2-Listar Prestamo");
+            System.out.println("3- Abonar");
+            System.out.println("4- Estado Cuenta");
             System.out.println("7- Salir");
             
             try{
