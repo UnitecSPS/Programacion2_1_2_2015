@@ -6,6 +6,7 @@
 package exclusivo8am.archivos;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Date;
@@ -95,16 +96,60 @@ public class CuentasManagement {
         rCuentas.seek(0);
         
         while(rCuentas.getFilePointer() < rCuentas.length()){
-            if(rCuentas.readInt() == nc)
-                return rCuentas.getFilePointer();
+            int num = rCuentas.readInt();
+            long pos = rCuentas.getFilePointer();
             rCuentas.readUTF();
-            rCuentas.seek(rCuentas.getFilePointer()+25);
+            rCuentas.seek(rCuentas.getFilePointer()+24);
+            if(rCuentas.readBoolean() && num == nc)
+                return pos;
         }
         
         return -1;
     }
     
-    public void depositar(int nc, double m){
-        
+    public void depositar(int nc, double m, String r)throws IOException{
+        long pos = search(nc);
+        if( pos != -1){
+            rCuentas.seek(pos);
+            rCuentas.readUTF();
+            double saldo = rCuentas.readDouble();
+            rCuentas.seek(rCuentas.getFilePointer()-8);
+            rCuentas.writeDouble(saldo+m);
+            rCuentas.readDouble();
+            rCuentas.writeLong(new Date().getTime());
+            createTransaction(nc,r,m,TipoTransaccion.DEPOSITO);
+        }
+    }
+    
+    public boolean retirar(int nc,double m, String r)throws IOException{
+        long pos = search(nc);
+        if( pos != -1){
+            rCuentas.seek(pos);
+            rCuentas.readUTF();
+            double saldo = rCuentas.readDouble();
+            if( saldo > m){
+                rCuentas.seek(rCuentas.getFilePointer()-8);
+                rCuentas.writeDouble(saldo-m);
+                rCuentas.readDouble();
+                rCuentas.writeLong(new Date().getTime());
+                createTransaction(nc,r,m,TipoTransaccion.RETIRO);
+                return true;
+            }  
+        }
+        return false;
+    }
+
+    private void createTransaction(int nc, String r, double m, TipoTransaccion tt) throws IOException{
+        try(RandomAccessFile rt = new RandomAccessFile(ROOT_FOLDER+"/transacciones_"+nc+".bac","rw")){
+            rt.seek(rt.length());
+            //fecha
+            rt.writeLong(new Date().getTime());
+            //tipo
+            rt.writeUTF(tt.name());
+            //responsable
+            rt.writeUTF(r);
+            //monto
+            rt.writeDouble(m);
+        }    
     }
 }
