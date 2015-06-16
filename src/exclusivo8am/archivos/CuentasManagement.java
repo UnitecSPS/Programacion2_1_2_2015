@@ -152,4 +152,56 @@ public class CuentasManagement {
             rt.writeDouble(m);
         }    
     }
+    
+    /**
+     * Recorrer TODAS LAS CUENTAS ACTIVAS
+     * Y le vamos adicionar al saldo el interes genero
+     * interes = saldo * tasa
+     * @throws IOException 
+     */
+    public void registrarIntereses()throws IOException{
+        rCuentas.seek(0);
+        while(rCuentas.getFilePointer() < rCuentas.length()){
+            int nc = rCuentas.readInt();
+            rCuentas.readUTF();
+            long pos = rCuentas.getFilePointer();
+            double sal = rCuentas.readDouble();
+            double t = rCuentas.readDouble();
+            rCuentas.readLong();
+            if(rCuentas.readBoolean()){
+                //activa
+                rCuentas.seek(pos);
+                double inte = sal*t;
+                rCuentas.writeDouble(sal+inte);
+                //movernos hasta el final del registro
+                rCuentas.skipBytes(17);
+                createTransaction(nc,"Banco", inte, TipoTransaccion.INTERESES);
+            }
+        }
+    }
+
+    /**
+     * Busquen la cuenta bancaria y si existe impriman TODOS sus datos
+     * Al final imprimen el LISTADO de transaciones asociadas con TODOS sus
+     * datos.
+     * AL FINAL IMPRIMIR LO SIGUIENTE:
+     *  - La cantidad TOTAL de Transacciones
+     *  - Suma del MONTO total de depositos
+     *  - Suma del MONTO total de Retiros
+     *  - Suma del MONTO total de intereses
+     * @param nc 
+     */
+    void estadoCuenta(int nc) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    /**
+     * RECORRE TODAS LAS CUENTAS y si estan activas y
+     * su fecha ultima de modificacion fue hace 5 años, la cuenta se
+     * inactiva para siempre
+     * @throws IOException 
+     */
+    void desactivar()throws IOException{
+        
+    }
 }
