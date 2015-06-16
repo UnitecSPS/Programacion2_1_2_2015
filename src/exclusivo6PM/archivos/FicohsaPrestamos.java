@@ -37,6 +37,12 @@ public class FicohsaPrestamos {
                     case 2:
                         manager.listar();
                         break;
+                    case 3:
+                        abonar();
+                        break;
+                    case 4:
+                        estado();
+                        break;
                 }
             }
             catch(InputMismatchException e){
@@ -58,5 +64,21 @@ public class FicohsaPrestamos {
         double m = lea.nextDouble();
         
         manager.agregarPrestamo(cli, t, m);
+    }
+
+    private static void abonar()throws IOException {
+        System.out.print("Numero: ");
+        int np = lea.nextInt();
+        System.out.print("Monto: ");
+        double a = lea.nextDouble();
+        System.out.print("Quien lo hace? ");
+        String quien = lea.next();
+        manager.abonar(np, a, quien);
+    }
+
+    private static void estado()throws IOException {
+        System.out.print("Numero: ");
+        int np = lea.nextInt();
+        manager.estadoCuenta(np);
     }
 }

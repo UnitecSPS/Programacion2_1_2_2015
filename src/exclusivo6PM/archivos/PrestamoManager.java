@@ -145,7 +145,7 @@ public class PrestamoManager {
             rPrestamos.readUTF();
             rPrestamos.readLong();
             long maxima = rPrestamos.readLong();
-            rPrestamos.skipBytes(8);
+            rPrestamos.skipBytes(16);
             long poi = rPrestamos.getFilePointer();
             double balance = rPrestamos.readDouble();
             
@@ -164,15 +164,74 @@ public class PrestamoManager {
         }
     }
 
-    private void createAbonoRegistro(int np, double a, double mora, String firmo, Date now) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void createAbonoRegistro(int np, double a, double mora, String firmo, Date now)throws IOException {
+        try(RandomAccessFile ra = new RandomAccessFile(ROOT_FOLDER+"/abonos_"+np+".fch", "rw")){
+            ra.seek(ra.length());
+            //fecha
+            ra.writeLong(now.getTime());
+            //firmo
+            ra.writeUTF(firmo);
+            //abonado
+            ra.writeDouble(a);
+            //mora
+            ra.writeDouble(mora);
+        }
     }
     
-    public void estadoCuenta(int np){
+    public void estadoCuenta(int np)throws IOException{
         /*
         1-Imprimir TODOS los datos del prestamo
         2- Imprimir el Listado de abonos hechos a este prestamo
         */
+        long pos = search(np);
+        
+        if( pos != -1){
+            System.out.println("Tipo: "+ tipo(rPrestamos.readChar()));
+            System.out.println("Nombre: "+rPrestamos.readUTF());
+            System.out.println("Fecha Creacion: "+new Date(rPrestamos.readLong()));
+            System.out.println("Fecha Maxima: "+new Date(rPrestamos.readLong()));
+            System.out.println("Monto Original: "+rPrestamos.readDouble());
+            System.out.println("Monto Extra: "+rPrestamos.readDouble());
+            System.out.println("Balance: "+rPrestamos.readDouble());
+            abonosHechos(np);
+        }
+        else
+            System.out.println("Prestamo no existe");
+    }
+
+    private String tipo(char tipo) {
+        switch(tipo){
+            case 'A':
+                return "Auto";
+            case 'V':
+                return "Vivienda";
+            case 'P':
+                return "Personal";
+            default:
+                return "Invalido";
+        }
+    }
+
+    private void abonosHechos(int np)throws IOException {
+        int ca=0, sa=0, sm=0;
+        System.out.println("Abonos de "+np+"\n---------------------");
+        try(RandomAccessFile ra = new RandomAccessFile(ROOT_FOLDER+"/abonos_"+np+".fch", "rw")){
+            while(ra.getFilePointer()<ra.length()){
+                ca++;
+                Date fa = new Date(ra.readLong());
+                String cli = ra.readUTF();
+                double abono = ra.readDouble();
+                double mora = ra.readDouble();
+                sa+=abono;
+                sm+=mora;
+                System.out.println("- Se pago Lps."+abono+
+                        " con mora de Lps."+mora+" hecho por "+
+                        cli+" el "+fa);
+            }
+            System.out.println("Total Abonos: "+ca);
+            System.out.println("Suma total abonada: "+sa);
+            System.out.println("Suma total por mora: "+sm);
+        }
     }
 
 }
