@@ -13,7 +13,31 @@ public class ListaDoble {
     Nodo raiz = null;
     
     public void add(Nodo obj){
-        
+        if( raiz == null){
+            raiz = obj;
+        }
+        else{
+            Nodo tmp = raiz;
+            while(tmp.next != null)
+                tmp = tmp.next;
+            tmp.next = obj;
+            obj.prev = tmp;
+        }
+    } 
+    
+    public void print(){
+        Nodo tmp = raiz, cola=null;
+        System.out.println("De Raiz a la Cola");
+        while(tmp!=null){
+            System.out.println(tmp);
+            cola = tmp;
+            tmp = tmp.next;
+        }
+        System.out.println("De la cola a la Raiz");
+        while(cola!=null){
+            System.out.println(cola);
+            cola = cola.prev;
+        }
     }
     
     public boolean remover(int c){
